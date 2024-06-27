@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task App</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <script
+    src="https://kit.fontawesome.com/7c379b1639.js"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <div class="bg">
+      <div class="container">
+        <h2>My Tasks</h2>
+        <div class="add-section">
+          <input
+            id="new-task"
+            type="text"
+            name="new-task"
+            placeholder="New task..."
+          />
+          <button id="btn-add" class="btn" onclick="addNewTask()">Add</button>
+        </div>
+
+        <div class="tab-container">
+          <button
+            id="btn-active"
+            class="tab"
+            onclick="handleTabClick('btn-active')"
+            style="font-weight: bold; text-decoration: underline"
+          >
+            Active
+          </button>
+          <button
+            id="btn-completed"
+            class="tab"
+            onclick="handleTabClick('btn-completed')"
+          >
+            Completed
+          </button>
+          <button id="btn-all" class="tab" onclick="handleTabClick('btn-all')">
+            All
+          </button>
+        </div>
+
+        <div class="tasks">
+          <div class="task">
+            <label for="task-name"
+              ><input
+                type="checkbox"
+                name="task-name"
+                checked
+                onclick="handleCheckboxClick(this)"
+              />Task 1</label
+            >
+            <i
+              class="fa fa-trash-o"
+              aria-hidden="true"
+              onclick="deleteTask(this)"
+            ></i>
+          </div>
+          <div class="task">
+            <input type="checkbox" name="task-name" />
+            <label for="task-name">Task 2</label>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./app.js"></script>
+</html>
