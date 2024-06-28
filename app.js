@@ -1,36 +1,27 @@
-var tasks = [
-    // {
-    //     id: 1,
-    //     desc: "Get element by id",
-    //     check: false,
-    // },
-    // {
-    //     id: 2,
-    //     desc: "Task 2",
-    //     check: true,
-    // }
-];
+// var tasks = [];
 
 window.onload = function () {
-    if (localStorage.getItem("tasks") === null) {
-        localStorage.setItem("tasks", tasks);
+    if (localStorage.getItem("tasks") == null) {
+        localStorage.setItem("tasks", JSON.stringify([]));
         return;
+    } else {
+        var tasks = JSON.parse(localStorage.getItem("tasks"));
+        var activeTasks = tasks.filter((task) => !task.check);
+        displayTasks(activeTasks);
     }
-    var tasks = JSON.parse(localStorage.getItem("tasks"));
-    var activeTasks = tasks.filter((task) => !task.check);
-    displayTasks(activeTasks);
 }
 
 function addNewTask() {
-    var task = document.getElementById("new-task").value;
+    const taskDesc = document.getElementById("new-task").value;
 
-    var newTask = {
+    const newTask = {
         id: 12,
-        desc: task,
+        desc: taskDesc,
         check: document.getElementById("new-task").checked
     }
+    const tasks = localStorage.getItem('tasks');
 
-    var tasksArr = JSON.parse(localStorage.getItem('tasks'));
+    var tasksArr = tasks != undefined ? JSON.parse(tasks) : [];
     tasksArr.push(newTask);
 
     localStorage.setItem('tasks', JSON.stringify(tasksArr));
