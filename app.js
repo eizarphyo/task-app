@@ -1,6 +1,10 @@
 // var tasks = [];
 
 window.onload = function () {
+    if (localStorage.getItem("tasks") == 'undefined') {
+        localStorage.clear();
+    }
+
     if (localStorage.getItem("tasks") == null) {
         localStorage.setItem("tasks", JSON.stringify([]));
         return;
