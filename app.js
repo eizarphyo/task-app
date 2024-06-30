@@ -29,7 +29,9 @@ function addNewTask() {
     tasksArr.push(newTask);
 
     localStorage.setItem('tasks', JSON.stringify(tasksArr));
-    displayTasks(tasksArr);
+
+    changeStyle('btn-active');
+    displayActiveTasks();
 
     document.getElementById("new-task").value = "";
     document.getElementById("new-task").focus();
@@ -80,16 +82,13 @@ function handleCheckboxClick(evt) {
 function handleTabClick(btnId) {
     changeStyle(btnId);
 
-    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    var allTasks = JSON.parse(localStorage.getItem('tasks'));
     if (btnId == 'btn-active') {
-        // var activeTasks = tasks.filter((task) => !task.check);
-        // displayTasks(activeTasks);
         displayActiveTasks();
     } else if (btnId == 'btn-completed') {
-        var completedTasks = tasks.filter((task) => task.check);
-        displayTasks(completedTasks);
+        displayCompletedTasks();
     } else {
-        displayTasks(tasks);
+        displayTasks(allTasks);
     }
 }
 
@@ -97,6 +96,12 @@ function displayActiveTasks() {
     var tasks = JSON.parse(localStorage.getItem('tasks'));
     var activeTasks = tasks.filter((task) => !task.check);
     displayTasks(activeTasks);
+}
+
+function displayCompletedTasks() {
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    var completedTasks = tasks.filter((task) => task.check);
+    displayTasks(completedTasks);
 }
 
 function changeStyle(btnId) {
